@@ -13,16 +13,17 @@ function Contact() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData);
-      alert('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to send message.');
-    }
-  };
+  e.preventDefault();
+  try {
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData);
+    alert('Message sent successfully!');
+    setFormData({ name: '', email: '', message: '' });
+  } catch (error) {
+    alert('Failed to send message.');
+    console.error(error.response?.data || error.message);
+  }
+};
+
 
   return (
     <div className="page-center">
